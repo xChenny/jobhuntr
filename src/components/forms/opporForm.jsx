@@ -4,33 +4,46 @@ import axios from "axios";
 class opporForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      company: "",
+      position: "",
+      applicant: "andrewchen",
+      error: ""
+    };
+  }
+
+  async submitApplication() {
+    const { company, position, applicant } = this.state;
+    if (!company || !position) {
+      this.setState({ error: "Missing form field(s)" });
+    } else {
+      const res = await axios.post(
+        "http://localhost:5000/jobhuntr/opportunities",
+        { company, position, applicant }
+      );
+      console.log(res.status);
+    }
   }
 
   render() {
     return (
       <div className="oppor-form">
         <h1>Add new Opportunity</h1>
-        <form
-          action="http://localhost:5000/jobhunter/opportunities"
-          method="POST"
-        >
-          <label>Company:</label>
-          <input
-            type="text"
-            onChange={e => this.setState({ company: e.value })}
-          />
-          <br />
+        <label>Company:</label>
+        <input
+          type="text"
+          onChange={e => this.setState({ company: e.value })}
+        />
+        <br />
 
-          <label>Position:</label>
-          <input
-            type="text"
-            onChange={e => this.setState({ position: e.value })}
-          />
-          <br />
+        <label>Position:</label>
+        <input
+          type="text"
+          onChange={e => this.setState({ position: e.value })}
+        />
+        <br />
 
-          <button type="submit">Submit</button>
-        </form>
+        <button onClick={this.submitApplication.bind(this)}>Submit</button>
       </div>
     );
   }
