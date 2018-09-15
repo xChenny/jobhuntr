@@ -1,0 +1,12 @@
+.App {
+  text-align: center; }
+
+.links {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 15px; }
+
+.card {
+  background-color: red;
+  height: 150px; }
