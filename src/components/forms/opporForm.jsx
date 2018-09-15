@@ -13,7 +13,7 @@ class opporForm extends Component {
 
   async submitApplication() {
     const res = await axios.post(
-      "http://e5eff8f8.ngrok.io/jobhuntr/opportunities",
+      "http://localhost:5000/jobhuntr/opportunities",
       this.state
     );
     console.log(res.status);
