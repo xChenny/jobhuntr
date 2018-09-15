@@ -28,6 +28,7 @@ class Opportunities extends Component {
         <Modal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
+          closeModal={this.handleCloseModal.bind(this)}
         >
           <FontAwesomeIcon
             icon="times"

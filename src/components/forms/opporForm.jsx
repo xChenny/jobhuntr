@@ -13,15 +13,19 @@ class opporForm extends Component {
   }
 
   async submitApplication() {
+    console.log(this.state);
     const { company, position, applicant } = this.state;
     if (!company || !position) {
+      console.log("Missing field(s)");
       this.setState({ error: "Missing form field(s)" });
     } else {
       const res = await axios.post(
         "http://localhost:5000/jobhuntr/opportunities",
         { company, position, applicant }
       );
-      console.log(res.status);
+      if (res.status === 200) {
+        this.props.closeModal();
+      }
     }
   }
 
@@ -32,14 +36,14 @@ class opporForm extends Component {
         <label>Company:</label>
         <input
           type="text"
-          onChange={e => this.setState({ company: e.value })}
+          onChange={e => this.setState({ company: e.target.value })}
         />
         <br />
 
         <label>Position:</label>
         <input
           type="text"
-          onChange={e => this.setState({ position: e.value })}
+          onChange={e => this.setState({ position: e.target.value })}
         />
         <br />
 

@@ -10,16 +10,28 @@ class appForm extends Component {
   };
 
   async submitApplication() {
-    const submission = await axios;
+    console.log(this.state);
+    const { company, position, applicant } = this.state;
+    if (!company || !position) {
+      console.log("Missing field(s)");
+      this.setState({ error: "Missing form field(s)" });
+    } else {
+      const res = await axios.post(
+        "http://localhost:5000/jobhuntr/opportunities",
+        { company, position, applicant }
+      );
+      if (res.status === 200) {
+        this.props.closeModal();
+      }
+    }
   }
 
-  render() {
-    const options = [
-      { value: "chocolate", label: "Chocolate" },
-      { value: "strawberry", label: "Strawberry" },
-      { value: "vanilla", label: "Vanilla" }
-    ];
-
+  async render() {
+    const options = await axios
+      .get(
+        `http://localhost:5000/jobhuntr/opportunities?username=${"andrewchen"}`
+      )
+      .data.map(opp => `${opp.company}, ${opp.position}`);
     return (
       <div className="app-form">
         <h1>Add Application to an Opportunity:</h1>
@@ -37,7 +49,7 @@ class appForm extends Component {
         />
         <br />
 
-        <button onClick={() => this.submitApplication()}>Submit</button>
+        <button onClick={this.submitApplication}>Submit</button>
       </div>
     );
   }
