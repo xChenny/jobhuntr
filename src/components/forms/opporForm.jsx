@@ -4,40 +4,33 @@ import axios from "axios";
 class opporForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      company: "",
-      position: "",
-      applicant: "andrewchen"
-    };
-  }
-
-  async submitApplication() {
-    const res = await axios.post(
-      "http://localhost:5000/jobhuntr/opportunities",
-      this.state
-    );
-    console.log(res.status);
+    this.state = {};
   }
 
   render() {
     return (
       <div className="oppor-form">
         <h1>Add new Opportunity</h1>
-        <label>Company:</label>
-        <input
-          type="text"
-          onChange={e => this.setState({ company: e.value })}
-        />
-        <br />
+        <form
+          action="http://localhost:5000/jobhunter/opportunities"
+          method="POST"
+        >
+          <label>Company:</label>
+          <input
+            type="text"
+            onChange={e => this.setState({ company: e.value })}
+          />
+          <br />
 
-        <label>Position:</label>
-        <input
-          type="text"
-          onChange={e => this.setState({ position: e.value })}
-        />
-        <br />
+          <label>Position:</label>
+          <input
+            type="text"
+            onChange={e => this.setState({ position: e.value })}
+          />
+          <br />
 
-        <button onClick={this.submitApplication.bind(this)}>Submit</button>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     );
   }
