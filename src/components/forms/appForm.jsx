@@ -1,55 +1,81 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import { toastr } from "react-redux-toastr";
+import moment from "moment";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class appForm extends Component {
-  state = {
-    company: "",
-    date: "",
-    position: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      opportunity_id: "",
+      date: moment(),
+      status: "applications",
+      opps: this.props.opps.map(opp => ({
+        label: `${opp.company}, ${opp.position}`,
+        value: opp.id
+      }))
+    };
+  }
 
   async submitApplication() {
-    console.log(this.state);
-    const { company, position, applicant } = this.state;
-    if (!company || !position) {
-      console.log("Missing field(s)");
-      this.setState({ error: "Missing form field(s)" });
+    let { opportunity_id, date, status } = this.state;
+    if (!opportunity_id || !date || !status) {
+      toastr.error("Error!", "Missing form field(s)");
     } else {
+      date = date.format();
+      console.log(moment(date));
       const res = await axios.post(
-        "http://localhost:5000/jobhuntr/opportunities",
-        { company, position, applicant }
+        "http://localhost:5000/jobhuntr/applications",
+        {
+          data: {
+            opportunity_id,
+            date,
+            status
+          }
+        }
       );
       if (res.status === 200) {
+        toastr.success(
+          "Success!",
+          "You have successfully added an opportunity"
+        );
         this.props.closeModal();
+        this.props.updateOpps("andrewchen");
+      } else {
+        toastr.error("Error!", res.statusText);
       }
     }
   }
 
-  async render() {
-    const options = await axios
-      .get(
-        `http://localhost:5000/jobhuntr/opportunities?username=${"andrewchen"}`
-      )
-      .data.map(opp => `${opp.company}, ${opp.position}`);
+  handleDateChange(date) {
+    this.setState({
+      date
+    });
+  }
+
+  render() {
+    const { opps, error, date } = this.state;
     return (
       <div className="app-form">
+        {error}
         <h1>Add Application to an Opportunity:</h1>
         <label>Select Opportunity</label>
-        <Select options={options} />
-        <br />
-
-        <label htmlFor="date">Date:</label>
-        <input
-          type="text"
-          name="date"
-          id="date"
-          placeholder="MM/DD/YYYY"
-          onChange={e => this.setState({ date: e.value })}
+        <Select
+          options={opps}
+          onChange={val => this.setState({ opportunity_id: val.value })}
         />
         <br />
-
-        <button onClick={this.submitApplication}>Submit</button>
+        <label htmlFor="date">Date:</label>
+        <DatePicker
+          selected={date}
+          onChange={this.handleDateChange.bind(this)}
+        />
+        <br />
+        <button onClick={this.submitApplication.bind(this)}>Submit</button>
       </div>
     );
   }

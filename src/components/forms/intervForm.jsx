@@ -1,41 +1,77 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import { toastr } from "react-redux-toastr";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class intervForm extends Component {
-  state = {
-    company: "",
-    date: "",
-    position: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      opportunity_id: "",
+      status: "interviews",
+      opps: this.props.opps.map(opp => ({
+        label: `${opp.company}, ${opp.position}`,
+        value: opp.id
+      }))
+    };
+  }
 
-  submitApplication() {
-    console.log("submitting opportunity");
+  async submitInterview() {
+    const { opportunity_id, date, status } = this.state;
+    if (!opportunity_id || !date || !status) {
+      toastr.error("Error!", "Missing form field(s)");
+    } else {
+      const res = await axios.post(
+        "http://localhost:5000/jobhuntr/interviews",
+        {
+          data: {
+            opportunity_id,
+            date,
+            status
+          }
+        }
+      );
+      if (res.status === 200) {
+        toastr.success("Success!", "You've made an interview");
+        this.props.updateOpps("andrewchen");
+        this.props.closeModal();
+      } else {
+        toastr.error("Error!", res.statusText);
+      }
+    }
+  }
+
+  handleDateChange(date) {
+    this.setState({
+      date
+    });
   }
 
   render() {
-    const options = [
-      { value: "chocolate", label: "Chocolate" },
-      { value: "strawberry", label: "Strawberry" },
-      { value: "vanilla", label: "Vanilla" }
-    ];
-
+    const { date } = this.state;
     return (
       <div className="interv-form">
         <h1>Add New Interview</h1>
-        <label>Select Opportunity</label>
-        <Select options={options} />
-        <br />
+        <form onSubmit={this.submitInterview.bind(this)}>
+          <label>Select Opportunity:</label>
+          <Select
+            options={this.state.opps}
+            onChange={ele => this.setState({ opportunity_id: ele.value })}
+          />
+          <br />
 
-        <label>Date:</label>
-        <input
-          type="text"
-          placeholder="MM/DD/YYYY"
-          onChange={e => this.setState({ date: e.value })}
-        />
-        <br />
+          <label>Date:</label>
+          <DatePicker
+            selected={date}
+            onChange={this.handleDateChange.bind(this)}
+          />
+          <br />
 
-        <button onClick={this.submitApplication}>Submit</button>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     );
   }

@@ -1,5 +1,25 @@
+// get library css
+@import "react-redux-toastr/src/styles/index";
+
 // get all view-specific css
 @import "styles/views/dashboard";
 
 // get all component-specific css
 @import "styles/components/card";
+@import "styles/components/tables";
+@import "styles/components/navbar";
+@import "styles/components/modal";
+@import "styles/components/react_datepicker";
+
+body {
+  font-family: "Roboto", sans-serif;
+
+  h1.heading {
+    font-size: 60px;
+    font-weight: 900;
+  }
+
+  h2.subheading {
+    font-weight: 500;
+  }
+}

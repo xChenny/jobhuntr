@@ -1,0 +1,59 @@
+.navbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  height: 85px;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+
+  .logo {
+    justify-self: start;
+    h2 {
+      padding-left: 15px;
+      font-size: 30px;
+      font-weight: 900;
+      align-self: center;
+
+      .logo-r {
+        color: #f39c12;
+      }
+    }
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    a {
+      align-self: center;
+      font-weight: 500;
+      color: black;
+      text-decoration: none;
+      padding: 0px;
+    }
+  }
+
+  .picture {
+    justify-self: end;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+    display: grid;
+
+    .circle {
+      justify-self: end;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      background-color: red;
+    }
+  }
+}
+
+.spacer {
+  margin-bottom: 80px;
+}

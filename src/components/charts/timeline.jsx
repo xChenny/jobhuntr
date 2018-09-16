@@ -1,26 +1,49 @@
 import React, { Component } from "react";
+import { XYPlot, LineMarkSeries, XAxis, Crosshair } from "react-vis";
 import "react-vis/dist/style.css";
-import {
-  XYPlot,
-  LineMarkSeries,
-  XAxis,
-  YAxis,
-  HorizontalGridLines
-} from "react-vis";
 
 class AppTimeline extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      crossHairVals: "",
+      lines: this.props.opps.filter(opp => {
+        const docStatuses = opp.processes.map(p => p.document.status);
+        return docStatuses.includes("interview");
+      })
+    };
+    this.onSeriesMouseOut = this.onSeriesMouseOut.bind(this);
+    this.onSeriesMouseOver = this.onSeriesMouseOver.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.state.lines);
+  }
+
+  /**
+   * Event trigger for hovering new a crosshair
+   */
+  onSeriesMouseOver(event) {
+    console.log(event);
+    this.setState({ crosshairValues: [...event] });
+  }
+
+  /**
+   * Event trigger for leaving cross hairs
+   */
+  onSeriesMouseOut() {
+    this.setState({ crosshairValues: [] });
+  }
+
   render() {
-    const data1 = [{ x: 3, y: 3 }, { x: 1, y: 3 }, { x: 8, y: 3 }];
-    const data2 = [{ x: 1, y: 5 }, { x: 4, y: 5 }];
-    const data3 = [{ x: 1, y: 1 }, { x: 4, y: 1 }];
     return (
       <div className="timeline">
-        <XYPlot height={300} width={window.innerWidth}>
+        <XYPlot height={300} width={window.innerWidth - 50}>
           <XAxis />
-          <LineMarkSeries data={data1} />
-          <LineMarkSeries data={data2} />
-          <LineMarkSeries data={data3} />
-          <HorizontalGridLines />
+          <Crosshair
+            values={this.state.crosshairValues}
+            className={"test-class-name"}
+          />
         </XYPlot>
       </div>
     );
