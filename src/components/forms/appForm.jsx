@@ -63,19 +63,23 @@ class appForm extends Component {
       <div className="app-form">
         {error}
         <h1>Add Application to an Opportunity:</h1>
-        <label>Select Opportunity</label>
+        <label className="label">Select Opportunity</label>
         <Select
           options={opps}
           onChange={val => this.setState({ opportunity_id: val.value })}
         />
         <br />
-        <label htmlFor="date">Date:</label>
+        <label className="label" htmlFor="date">
+          Date:
+        </label>
         <DatePicker
           selected={date}
           onChange={this.handleDateChange.bind(this)}
         />
         <br />
-        <button onClick={this.submitApplication.bind(this)}>Submit</button>
+        <button className="btn" onClick={this.submitApplication.bind(this)}>
+          Submit
+        </button>
       </div>
     );
   }

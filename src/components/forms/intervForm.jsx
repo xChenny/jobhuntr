@@ -57,14 +57,14 @@ class intervForm extends Component {
       <div className="interv-form">
         <h1>Add New Interview</h1>
         <form onSubmit={this.submitInterview.bind(this)}>
-          <label>Select Opportunity:</label>
+          <label className="label">Select Opportunity:</label>
           <Select
             options={this.state.opps}
             onChange={ele => this.setState({ opportunity_id: ele.value })}
           />
           <br />
 
-          <label>Date:</label>
+          <label className="label">Date:</label>
           <DatePicker
             selected={date}
             onChange={this.handleDateChange.bind(this)}

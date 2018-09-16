@@ -9,6 +9,15 @@ import Table from "../../components/table";
 
 Modal.setAppElement("#root");
 
+const customStyles = {
+  content: {
+    top: "15%",
+    left: "30%",
+    right: "30%",
+    bottom: "15%"
+  }
+};
+
 class Applications extends Component {
   constructor(props) {
     super(props);
@@ -29,16 +38,20 @@ class Applications extends Component {
   render() {
     return (
       <div id="apps" className="apps">
-        <h1 className="heading">Your Job Applications:</h1>
-        <button onClick={() => this.handleOpenModal()}>
-          Add New Application
-        </button>
+        <h1 className="heading">Applications</h1>
+        <p className="info">Manage your Job Applications here.</p>
+        <div className="button">
+          <button className="btn" onClick={() => this.handleOpenModal()}>
+            New Application
+          </button>
+        </div>
         <Table
           opps={this.props.opps}
           updateOpps={this.props.updateOpps}
           status="applications"
         />
         <Modal
+          style={customStyles}
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
         >

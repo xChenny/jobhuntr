@@ -75,39 +75,40 @@ class offersForm extends Component {
   }
 
   render() {
-    const { error, date } = this.state;
+    const { date } = this.state;
     return (
       <div className="offers-form">
-        {error}
         <h1>Add New Offer</h1>
         <form onSubmit={this.submitOffer.bind(this)}>
-          <label>Select Opportunity:</label>
+          <label className="label">Select Opportunity:</label>
           <Select
             options={this.state.opps}
             onChange={ele => this.setState({ opportunity_id: ele.value })}
           />
           <br />
-          <label>Location:</label>
+          <label className="label">Location:</label>
           <Select
             options={cities}
             onChange={ele => this.setState({ location: ele.value })}
           />
           <br />
 
-          <label>Date:</label>
+          <label className="label">Date:</label>
           <DatePicker
+            className="input"
             selected={date}
             onChange={this.handleDateChange.bind(this)}
           />
           <br />
 
-          <label>Compensation:</label>
+          <label className="label">Compensation:</label>
           <br />
           <input
             type="number"
             name="compensation"
             onChange={e => this.setState({ compensation: e.target.value })}
           />
+          <br />
 
           <button type="submit">Submit</button>
         </form>
