@@ -341,14 +341,16 @@ body.toastr-confirm-active {
 
 .dashboard,
 .opportunities {
-  margin: 15px; }
+  text-align: left;
+  margin-left: 128px;
+  margin-right: 128px; }
   .dashboard .info,
   .opportunities .info {
     font-weight: 300; }
   .dashboard .heading,
   .opportunities .heading {
-    padding-top: 10px;
-    margin-bottom: 0px; }
+    display: relative;
+    padding-top: 30px; }
   .dashboard .job-links,
   .opportunities .job-links {
     margin: 10px 60px;
@@ -360,6 +362,40 @@ body.toastr-confirm-active {
       margin: 15px;
       text-decoration: none;
       color: black; }
+  .dashboard .button,
+  .opportunities .button {
+    display: grid;
+    justify-content: end; }
+  .dashboard .btn,
+  .opportunities .btn {
+    height: 50px;
+    width: 125px;
+    margin: 5px; }
+
+.oppor-form .input {
+  -webkit-appearance: textfield;
+  background-color: white;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  display: grid;
+  justify-content: center;
+  width: 90%;
+  padding: 12px 20px;
+  border-radius: 4px; }
+
+.oppor-form .label {
+  display: grid;
+  justify-content: start;
+  font-weight: 900; }
+
+.oppor-form .btn {
+  background: linear-gradient(101.18deg, #3253FE -5.14%, rgba(255, 255, 255, 0) 145.08%), #061B51;
+  box-shadow: 4px 4px 45px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-weight: 900; }
 
 .card {
   background-color: red;

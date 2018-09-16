@@ -44,23 +44,30 @@ class opporForm extends Component {
   render() {
     return (
       <div className="oppor-form">
-        <h1>Add new Opportunity</h1>
+        <h1>Add new opportunity</h1>
+	<hr />
         <form onSubmit={e => this.submitOpportunity.bind(this)(e)}>
-          <label>Company:</label>
+          <label className="label">Company:</label>
+	  <br />
           <input
+	    className="input"
             type="text"
+	    placeholder="Microsoft"
             onChange={e => this.setState({ company: e.target.value })}
           />
           <br />
 
-          <label>Position:</label>
+          <label className="label">Position:</label>
+	  <br />
           <input
+	    className="input"
             type="text"
+	    placeholder="Software Engineering Intern"
             onChange={e => this.setState({ position: e.target.value })}
           />
           <br />
 
-          <button type="submit">Submit</button>
+          <button className='btn' type="submit">Submit</button>
         </form>
       </div>
     );

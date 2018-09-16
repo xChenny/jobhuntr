@@ -4,8 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import OppForm from "../../components/forms/opporForm";
 import Table from "../../components/table";
+  
+const customStyles = {
+  content : {
+    top                   : '15%',
+    left                  : '30%',
+    right                 : '30%',
+    bottom                : '15%',
+  }
+};
 
 class Opportunities extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,11 +34,13 @@ class Opportunities extends Component {
   render() {
     return (
       <div className="opportunities">
-        <h1 className="heading">Your Opportunities:</h1>
+        <h1 className="heading">Opportunities</h1>
         <p className="info">
-          A list of desired companies/positions to apply for:
+          Manage your ongoing job leads and company opportunities.
         </p>
-        <button onClick={() => this.handleOpenModal()}>Add Opportunity</button>
+	<div className='button'>
+          <button className="btn" onClick={() => this.handleOpenModal()}>Add Opportunity</button>
+	</div>
         <Table
           opps={this.props.opps}
           updateOpps={this.props.updateOpps}
@@ -36,7 +48,7 @@ class Opportunities extends Component {
         />
         <Modal
           isOpen={this.state.showModal}
-          style={{ width: 500 }}
+          style={ customStyles }
           contentLabel="Minimal Modal Example"
         >
           <FontAwesomeIcon
