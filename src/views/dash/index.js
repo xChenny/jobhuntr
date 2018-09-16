@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Dash from "./Dash";
-import { getOpportunities } from "./actions";
+import { getOpportunities, purgeState } from "./actions";
 
 // Container component for the Applications presentational component
 
@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOpps: username => dispatch(getOpportunities(username))
+  getOpps: username => dispatch(getOpportunities(username)),
+  purgeOpps: () => {dispatch(purgeState())}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dash);

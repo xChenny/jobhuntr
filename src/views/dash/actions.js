@@ -34,3 +34,5 @@ const setOpps = data => ({ type: "SET_OPPS", data })
  * @param {String} text 
  */
 const getOppsErr = text => ({ type: "ERROR", text })
+
+export const purgeState = () => ({ type: "PURGE" })

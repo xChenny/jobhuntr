@@ -13,12 +13,13 @@ export default class Dashboard extends Component {
   // get the # of applications at a certain stage
   // stage is either application|interview|offer|rejection
   getStageLen(status) {
-    return this.props.opps.filter(opp => {
+    let counter = 0;
+    this.props.opps.forEach(opp => {
       for (let p of opp.processes) {
-        if (p.document.status === status) return true;
+        if (p.type === status) counter++;
       }
-      return false;
-    }).length;
+    });
+    return counter;
   }
 
   render() {
@@ -36,7 +37,7 @@ export default class Dashboard extends Component {
             <Card>
               <h2 className="subheading">Applications</h2>
               <h2 className="subheading number">
-                {this.getStageLen("applications")}
+                {this.getStageLen("application")}
               </h2>
             </Card>
           </Link>
@@ -45,7 +46,7 @@ export default class Dashboard extends Component {
             <Card>
               <h2 className="subheading">Interviews</h2>
               <h2 className="subheading number">
-                {this.getStageLen("interviews")}
+                {this.getStageLen("interview")}
               </h2>
             </Card>
           </Link>
@@ -53,9 +54,7 @@ export default class Dashboard extends Component {
           <Link to="/offers">
             <Card>
               <h2 className="subheading">Offers</h2>
-              <h2 className="subheading number">
-                {this.getStageLen("offers")}
-              </h2>
+              <h2 className="subheading number">{this.getStageLen("offer")}</h2>
             </Card>
           </Link>
         </div>

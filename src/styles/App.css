@@ -397,6 +397,29 @@ body.toastr-confirm-active {
   color: white;
   font-weight: 900; }
 
+.home {
+  background-color: white; }
+  .home .sunnyd {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0; }
+  .home .logo {
+    display: grid; }
+    .home .logo h2 {
+      justify-self: start;
+      margin-left: 25px; }
+      .home .logo h2 .logo-r {
+        color: #f39c12; }
+  .home .heading-box {
+    width: 55%;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 100px; }
+  .home .btn {
+    margin-top: 30px; }
+
 .card {
   background-color: red;
   height: 150px;
@@ -499,6 +522,15 @@ body.toastr-confirm-active {
 .react-datepicker__navigation--next {
   border-left-color: #ccc;
   right: 1em; }
+
+.btn {
+  background: linear-gradient(101.18deg, #3253FE -5.14%, rgba(255, 255, 255, 0) 145.08%), #061B51;
+  box-shadow: 4px 4px 45px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-weight: 900; }
 
 body {
   font-family: "Roboto", sans-serif; }

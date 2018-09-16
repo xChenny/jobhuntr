@@ -1,6 +1,6 @@
 // libraries
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // styles
 import "./styles/App.css";
@@ -26,8 +26,10 @@ library.add(faTimes);
 const App = () => (
   <Router>
     <div className="App">
-      <Route path="/" component={Navbar} />
-      <Route exact path="/" component={HomePage} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/" component={Navbar} />
+      </Switch>
       <Route path="/error" component={ErrorPage} />
       <Route path="/dashboard" component={DashboardPage} />
       <Route path="/applied" component={AppliedPage} />

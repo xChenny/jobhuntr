@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import axios from "axios";
+import DatePicker from "react-datepicker";
 import { toastr } from "react-redux-toastr";
 
 const cities = [
-  "NEW YORK",
-  "SAN FRANCISCO",
-  "SEATTLE",
-  "HOUSTON",
-  "WASHINGTON DC"
+  { label: "NEW YORK", value: "NEW YORK" },
+  { label: "SAN FRANCISCO", value: "SAN FRANCISCO" },
+  { label: "SEATTLE", value: "SEATTLE" },
+  { label: "HOUSTON", value: "HOUSTON" },
+  { label: "WASHINGTON DC", value: "WASHINGTON DC" }
 ];
 
 class offersForm extends Component {
@@ -20,24 +21,30 @@ class offersForm extends Component {
     };
   }
 
-  async submitOffer() {
-    console.log(this.state);
-    const { location, compensation } = this.state;
+  async submitOffer(e) {
+    e.preventDefault();
+    let { date, opportunity_id, location, compensation } = this.state;
     if (!location || !compensation) {
       toastr.error("Error!", "Missing form field(s)");
     } else if (Number(this.state.compensation) == NaN) {
       toastr.error("Error!", "The Compensation is not a number!");
     } else {
+      compensation = parseInt(compensation);
       const res = await axios.post("http://localhost:5000/jobhuntr/offers", {
         data: {
           location,
-          compensation
+          compensation,
+          date,
+          opportunity_id
         }
       });
       if (res.status === 200) {
         toastr.success("Success!", "Congratulations, you've created an offer.");
         this.props.closeModal();
         this.props.updateOpps("andrewchen");
+      } else {
+        toastr.error("Error!", res.statusText);
+        console.log(res.status);
       }
     }
   }
@@ -61,8 +68,14 @@ class offersForm extends Component {
     }
   }
 
+  handleDateChange(date) {
+    this.setState({
+      date
+    });
+  }
+
   render() {
-    const { error } = this.state;
+    const { error, date } = this.state;
     return (
       <div className="offers-form">
         {error}
@@ -78,6 +91,13 @@ class offersForm extends Component {
           <Select
             options={cities}
             onChange={ele => this.setState({ location: ele.value })}
+          />
+          <br />
+
+          <label>Date:</label>
+          <DatePicker
+            selected={date}
+            onChange={this.handleDateChange.bind(this)}
           />
           <br />
 
