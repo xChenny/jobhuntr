@@ -19,6 +19,7 @@ import InterviewsPage from "./views/interviews";
 import OffersPage from "./views/offers";
 import OpportunitiesPage from "./views/opportunity";
 import ComparePage from "./views/compare";
+import COLPage from "./views/col";
 
 // add icons to fa library
 library.add(faTimes);
@@ -37,6 +38,7 @@ const App = () => (
       <Route path="/offers" component={OffersPage} />
       <Route path="/opportunities" component={OpportunitiesPage} />
       <Route path="/compare" component={ComparePage} />
+      <Route path="/col" component={COLPage} />
     </div>
   </Router>
 );
