@@ -5,6 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InterviewForm from "../../components/forms/intervForm";
 import Table from "../../components/table";
 
+const customStyles = {
+  content: {
+    top: "15%",
+    left: "30%",
+    right: "30%",
+    bottom: "15%"
+  }
+};
 class Interview extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +34,11 @@ class Interview extends Component {
     const { opps } = this.props;
     return (
       <div className="interviews">
-        <h1 className="heading">Your Interviews:</h1>
+        <h1 className="heading">Interviews</h1>
+        <p className="info">Keep Track of Interviews here.</p>
         <div className="button">
-          <button onClick={() => this.handleOpenModal()}>
-            Add New Interview
+          <button className="btn" onClick={() => this.handleOpenModal()}>
+            New Interview
           </button>
         </div>
         <Table
@@ -38,6 +47,7 @@ class Interview extends Component {
           status="interview"
         />
         <Modal
+          style={customStyles}
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
         >

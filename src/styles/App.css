@@ -340,39 +340,63 @@ body.toastr-confirm-active {
   background: #fcf9f9; }
 
 .dashboard,
-.opportunities {
+.opportunities,
+.apps,
+.interviews,
+.offers {
   text-align: left;
   margin-left: 128px;
   margin-right: 128px; }
   .dashboard .info,
-  .opportunities .info {
+  .opportunities .info,
+  .apps .info,
+  .interviews .info,
+  .offers .info {
     font-weight: 300; }
   .dashboard .heading,
-  .opportunities .heading {
+  .opportunities .heading,
+  .apps .heading,
+  .interviews .heading,
+  .offers .heading {
     display: relative;
     padding-top: 30px; }
   .dashboard .job-links,
-  .opportunities .job-links {
+  .opportunities .job-links,
+  .apps .job-links,
+  .interviews .job-links,
+  .offers .job-links {
     margin: 10px 60px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-column-gap: 15px; }
     .dashboard .job-links a,
-    .opportunities .job-links a {
+    .opportunities .job-links a,
+    .apps .job-links a,
+    .interviews .job-links a,
+    .offers .job-links a {
       margin: 15px;
       text-decoration: none;
       color: black; }
   .dashboard .button,
-  .opportunities .button {
+  .opportunities .button,
+  .apps .button,
+  .interviews .button,
+  .offers .button {
     display: grid;
     justify-content: end; }
   .dashboard .btn,
-  .opportunities .btn {
+  .opportunities .btn,
+  .apps .btn,
+  .interviews .btn,
+  .offers .btn {
     height: 50px;
     width: 125px;
     margin: 5px; }
 
-.oppor-form .input {
+.offers-form .input,
+.interv-form .input,
+.oppor-form .input,
+.app-form .input {
   -webkit-appearance: textfield;
   background-color: white;
   -webkit-rtl-ordering: logical;
@@ -383,13 +407,19 @@ body.toastr-confirm-active {
   padding: 12px 20px;
   border-radius: 4px; }
 
-.oppor-form .label {
+.offers-form .label,
+.interv-form .label,
+.oppor-form .label,
+.app-form .label {
   display: grid;
   justify-content: start;
   font-weight: 900; }
 
-.oppor-form .btn {
-  background: linear-gradient(101.18deg, #3253FE -5.14%, rgba(255, 255, 255, 0) 145.08%), #061B51;
+.offers-form .btn,
+.interv-form .btn,
+.oppor-form .btn,
+.app-form .btn {
+  background: linear-gradient(101.18deg, #3253fe -5.14%, rgba(255, 255, 255, 0) 145.08%), #061b51;
   box-shadow: 4px 4px 45px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   width: 150px;
@@ -428,6 +458,7 @@ body.toastr-confirm-active {
     margin-top: 30px; }
 
 .card {
+  text-align: center;
   background-color: red;
   height: 150px;
   background: #ffffff;
@@ -436,6 +467,7 @@ body.toastr-confirm-active {
     font-weight: 400;
     font-size: 30px;
     padding-top: 20px;
+    margin: 20px;
     margin-bottom: -20px; }
   .card h3.ssheading {
     font-weight: 300;
@@ -529,6 +561,11 @@ body.toastr-confirm-active {
 .react-datepicker__navigation--next {
   border-left-color: #ccc;
   right: 1em; }
+
+.react-datepicker__input-container {
+  width: 300px;
+  height: 35px;
+  font-size: 18px; }
 
 .btn {
   background: linear-gradient(101.18deg, #3253FE -5.14%, rgba(255, 255, 255, 0) 145.08%), #061B51;
