@@ -16,10 +16,6 @@ class AppTimeline extends Component {
     this.onSeriesMouseOver = this.onSeriesMouseOver.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.state.lines);
-  }
-
   /**
    * Event trigger for hovering new a crosshair
    */

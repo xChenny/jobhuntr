@@ -20,6 +20,10 @@ const dashState = (state = {opps: []}, action) => {
         ...state,
         errorMessage: action.text
       }
+    case 'PURGE':
+      return {
+        opps: []
+      }
     default:
       return state
   }

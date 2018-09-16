@@ -19,7 +19,8 @@ class intervForm extends Component {
     };
   }
 
-  async submitInterview() {
+  async submitInterview(e) {
+    e.preventDefault();
     const { opportunity_id, date, status } = this.state;
     if (!opportunity_id || !date || !status) {
       toastr.error("Error!", "Missing form field(s)");
@@ -36,8 +37,8 @@ class intervForm extends Component {
       );
       if (res.status === 200) {
         toastr.success("Success!", "You've made an interview");
-        this.props.updateOpps("andrewchen");
         this.props.closeModal();
+        this.props.updateOpps("andrewchen");
       } else {
         toastr.error("Error!", res.statusText);
       }

@@ -3,6 +3,7 @@
 
 // get all view-specific css
 @import "styles/views/dashboard";
+@import "styles/views/home";
 
 // get all component-specific css
 @import "styles/components/card";
@@ -10,6 +11,7 @@
 @import "styles/components/navbar";
 @import "styles/components/modal";
 @import "styles/components/react_datepicker";
+@import "styles/components/button";
 
 body {
   font-family: "Roboto", sans-serif;

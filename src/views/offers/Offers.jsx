@@ -30,7 +30,7 @@ class Offers extends Component {
         <Table
           opps={this.props.opps}
           updateOpps={this.props.updateOpps}
-          status="offers"
+          status="offer"
         />
         <Modal
           isOpen={this.state.showModal}

@@ -75,17 +75,22 @@ class Table extends Component {
    * @param {} statusFilter
    * @param {} opps
    */
-  getOpps(opps, statusFilter) {
-    if (opps) {
+  getOpps(currOpps, statusFilter) {
+    if (currOpps) {
       if (statusFilter !== "opportunities") {
-        return opps.filter(opp => {
+        let relevantOpps = [];
+        currOpps.forEach(opp => {
           for (let p of opp.processes) {
-            if (p.document.status === this.props.status) return true;
+            if (
+              p.document.status === this.props.status ||
+              p.type === this.props.status
+            )
+              relevantOpps.push(opp);
           }
-          return false;
         });
+        return relevantOpps;
       } else {
-        return opps;
+        return currOpps;
       }
     } else {
       return [];

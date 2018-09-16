@@ -27,13 +27,15 @@ class Interview extends Component {
     return (
       <div className="interviews">
         <h1 className="heading">Your Interviews:</h1>
-        <button onClick={() => this.handleOpenModal()}>
-          Add New Interview
-        </button>
+        <div className="button">
+          <button onClick={() => this.handleOpenModal()}>
+            Add New Interview
+          </button>
+        </div>
         <Table
           opps={opps}
           updateOpps={this.props.updateOpps}
-          status="interviews"
+          status="interview"
         />
         <Modal
           isOpen={this.state.showModal}
