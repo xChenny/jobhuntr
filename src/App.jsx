@@ -18,7 +18,7 @@ import AppliedPage from "./views/apps";
 import InterviewsPage from "./views/interviews";
 import OffersPage from "./views/offers";
 import OpportunitiesPage from "./views/opportunity";
-import ComparePage from "./views/compare/Compare";
+import ComparePage from "./views/compare";
 
 // add icons to fa library
 library.add(faTimes);
